@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>jQuery Task</title>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+  <style>
+    body{
+      font-family:Arial;
+      text-align:center;
+      background:#eee;
+    }
+
+    #profile-card{
+      width:320px;
+      margin:20px auto;
+      padding:20px;
+      border:1px solid #aaa;
+      background:#fff;
+    }
+
+    #profile-photo{
+      width:120px;
+      height:120px;
+      object-fit:cover;
+    }
+
+    ul{
+      list-style:none;
+      padding:0;
+    }
+
+    button{
+      margin:3px;
+      padding:7px;
+    }
+
+    .highlighted{
+      border:4px solid gold;
+    }
+
+    .dark-mode{
+      background:#222 !important;
+      color:white;
+    }
+
+    .rounded{
+      border-radius:50%;
+    }
+
+    .shadow{
+      box-shadow:0 0 15px black;
+    }
+  </style>
+</head>
+
+<body>
+
+<div id="profile-card">
+
+  <img id="profile-photo"
+  src="https://picsum.photos/120">
+
+  <h2 id="student-name">Ro-Hit</h2>
+
+  <p id="student-bio">
+    <b>BSIT Student</b><br>
+    Loves coding and web design.
+  </p>
+
+  <input type="text" id="nickname-input" placeholder="Enter nickname">
+
+  <ul id="skills-list">
+    <li>HTML</li>
+    <li>CSS</li>
+    <li>jQuery</li>
+  </ul>
+
+</div>
+
+<h2 id="output">Output Here</h2>
+
+<!-- Buttons -->
+
+<button id="showName">Show Name</button>
+<button id="changeName">Change Name</button>
+<button id="showBio">Show Bio</button>
+<button id="getInput">Get Input</button>
+<button id="setInput">Set Input</button>
+
+<br><br>
+
+<button id="highlight">Highlight Card</button>
+<button id="removeHighlight">Remove Highlight</button>
+<button id="dark">Toggle Dark Mode</button>
+<button id="round">Toggle Rounded</button>
+
+<br><br>
+
+<button id="redBg">Red Background</button>
+<button id="resetBg">Reset Background</button>
+
+<br><br>
+
+<button id="hidePhoto">Hide Photo</button>
+<button id="showPhoto">Show Photo</button>
+<button id="toggleBio">Toggle Bio</button>
+
+<br><br>
+
+<button id="fadeOut">Fade Out Card</button>
+<button id="fadeIn">Fade In Card</button>
+<button id="fade50">Fade to 50%</button>
+
+<br><br>
+
+<button id="slideUp">Slide Up Skills</button>
+<button id="slideDown">Slide Down Skills</button>
+<button id="slideToggle">Slide Toggle Skills</button>
+
+<br><br>
+
+<button id="animate">Animate Card</button>
+
+<script>
+
+$(function(){
+
+  // GET & SET
+  $("#showName").click(()=>$("#output").text($("#student-name").text()));
+
+  $("#changeName").click(()=>$("#student-name").text("Ro-Hit"));
+
+  $("#showBio").click(()=>$("#output").text($("#student-bio").html()));
+
+  $("#getInput").click(()=>$("#output").text($("#nickname-input").val()));
+
+  $("#setInput").click(()=>$("#nickname-input").val("jQuery Pro"));
+
+  // CLASSES
+  $("#highlight").click(()=>$("#profile-card").addClass("highlighted"));
+
+  $("#removeHighlight").click(()=>$("#profile-card").removeClass("highlighted"));
+
+  $("#dark").click(()=>$("#profile-card").toggleClass("dark-mode"));
+
+  $("#round").click(()=>$("#profile-photo").toggleClass("rounded"));
+
+  // CSS
+  $("#redBg").click(()=>$("#profile-card").css("background","#e74c3c"));
+
+  $("#resetBg").click(()=>$("#profile-card").css("background","white"));
+
+  // HIDE & SHOW
+  $("#hidePhoto").click(()=>$("#profile-photo").hide("slow"));
+
+  $("#showPhoto").click(()=>$("#profile-photo").show("slow"));
+
+  $("#toggleBio").click(()=>$("#student-bio").toggle());
+
+  // FADE
+  $("#fadeOut").click(()=>$("#profile-card").fadeOut());
+
+  $("#fadeIn").click(()=>$("#profile-card").fadeIn());
+
+  $("#fade50").click(()=>$("#profile-card").fadeTo("slow",0.5));
+
+  // SLIDE
+  $("#slideUp").click(()=>$("#skills-list").slideUp());
+
+  $("#slideDown").click(()=>$("#skills-list").slideDown());
+
+  $("#slideToggle").click(()=>$("#skills-list").slideToggle());
+
+  // ANIMATE
+  $("#animate").click(()=>$("#profile-card")
+    .animate({"margin-left":"200px"},1000)
+    .animate({"margin-left":"0px"},1000)
+  );
+
+  // EVENTS
+  $("#profile-photo")
+    .mouseenter(()=>$("#profile-photo").addClass("shadow"))
+    .mouseleave(()=>$("#profile-photo").removeClass("shadow"));
+
+  $("#nickname-input").keypress(function(e){
+    $("#output").text("Pressed Key: " + e.key);
+  });
+
+});
+
+</script>
+
+</body>
+</html>
